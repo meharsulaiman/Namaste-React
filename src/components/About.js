@@ -5,7 +5,7 @@ import ProfileClass from './ProffileClass';
 
 const About = () => {
   return (
-    <div>
+    <div className='px-5'>
       <div>
         <h1>About</h1>
         <p>
@@ -16,12 +16,21 @@ const About = () => {
           distinctio, animi quo quia ea omnis dolorem magni excepturi
           reiciendis? Nihil, molestiae similique?
         </p>
-        <Link to="profile" style={{ margin: '0 10px 0 0' }}>
+        <Link
+          to='profile'
+          style={{ margin: '0 10px 0 0' }}
+          className='cursor-pointer rounded border px-2 py-1 font-bold'
+        >
           Show Profile
         </Link>
-        <Link to="/about">Hide Profile</Link>
+        <Link
+          to='/about'
+          className='cursor-pointer rounded border px-2 py-1 font-bold'
+        >
+          Hide Profile
+        </Link>
       </div>
-      <ProfileClass name="Sulaiman Class" />
+      <ProfileClass name='Sulaiman Class' />
       <Outlet />
     </div>
   );

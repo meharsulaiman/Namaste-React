@@ -32,8 +32,8 @@ html {
   }
 }
 
-.menu-container > h1,
-h3 {
+.menu-container h1,
+.menu-container h3 {
   background-color: rgba(0, 0, 0, 0.582);
   padding: 2px 4px;
   margin: 2px;
