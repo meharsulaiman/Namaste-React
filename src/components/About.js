@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { Outlet, Link } from 'react-router-dom';
 import ProfileClass from './ProffileClass';
+import userContext from '../context/userContext';
 
 const About = () => {
+  const {user} = useContext(userContext)
   return (
     <div className='px-5'>
       <div>
-        <h1>About</h1>
+        <h1 className='my-5 text-2xl font-medium'>{user.name} - {user.email}</h1>
+        <h1 className='text-center font-bold text-3xl my-2'>About</h1>
         <p>
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas unde
           excepturi voluptatibus error hic praesentium debitis repudiandae a

@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useState } from 'react';
 import Header from './components/Header';
 import Body from './components/Body';
 import Footer from './components/Footer';
@@ -7,6 +7,7 @@ import { Outlet, createBrowserRouter } from 'react-router-dom';
 import Contact from './components/Contact';
 import Profile from './components/Profile';
 import Shimmer from './components/Shimmer';
+import userContext from './context/userContext';
 
 // Lazy
 const Instamart = lazy(() => import('./components/Instamart'));
@@ -14,12 +15,19 @@ const About = lazy(() => import('./components/About.js'));
 const RestrauntMenu = lazy(() => import('./components/RestrauntMenu.js'));
 
 const App = () => {
+  const [user, setUser] = useState({
+    name: 'My',
+    email: 'my@example.com',
+    password: 'password'
+  })
   return (
-    <>
+    <userContext.Provider value={{user, setUser}}>
       <Header />
+      <div className='h-full'>
       <Outlet />
+      </div>
       <Footer />
-    </>
+    </userContext.Provider>
   );
 };
 

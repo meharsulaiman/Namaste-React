@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import RestrauntCard from './RestrauntCard';
 import Shimmer from './Shimmer.js';
 import { Link } from 'react-router-dom';
 import useBody from '../utils/useBody';
 import useOnline from '../utils/useOnline';
-
+import userContext from '../context/userContext.js';
 const Body = () => {
   const isOnline = useOnline();
   const [
@@ -14,6 +14,7 @@ const Body = () => {
     clickHandler,
     onChangeInput,
   ] = useBody();
+  const {user, setUser} = useContext(userContext)
 
   return isOnline ? (
     <>
@@ -27,12 +28,19 @@ const Body = () => {
             onChange={(e) => onChangeInput(e)}
           />
           <button
-            className='absolute inset-y-0 right-0 rounded-r-full bg-blue-500 px-4 py-2 font-medium text-white hover:bg-blue-700'
+            className='absolute inset-y-0 right-0 rounded-r-full transition-all bg-blue-500 px-4 py-2 font-medium text-white hover:bg-blue-700'
             onClick={clickHandler}
           >
             Search
           </button>
+
+         
         </div>
+        <input className='border rounded-md px-2 py-1' type="text" value={user.name} onChange={e => setUser({
+          name: e.target.value,
+          email: `my@example.com`,
+          password: 'password'
+        })} />
       </div>
 
       {allRestaurants.length === 0 ? (

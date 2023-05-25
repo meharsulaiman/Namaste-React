@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import './Header.css';
 import logo from '../../public/logo.png';
 import { NavLink } from 'react-router-dom';
 import useOnline from '../utils/useOnline';
+import userContext from '../context/userContext';
 
 const Header = () => {
+  const {user} = useContext(userContext);
+
   const isOnline = useOnline();
   return (
     <header className='mb-1 flex items-center justify-between px-2 text-base shadow-lg'>
@@ -55,6 +58,10 @@ const Header = () => {
             </NavLink>
           </li>
         </ul>
+      </div>
+
+      <div className='border transition-all cursor-pointer rounded-full font-bold p-3 w-12 h-12 flex items-center justify-center hover:bg-gray-200'>
+        <p>{user.name}</p>
       </div>
     </header>
   );
