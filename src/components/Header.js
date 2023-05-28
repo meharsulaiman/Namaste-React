@@ -1,14 +1,18 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import './Header.css';
 import logo from '../../public/logo.png';
 import { NavLink } from 'react-router-dom';
 import useOnline from '../utils/useOnline';
 import userContext from '../context/userContext';
+import { useSelector } from 'react-redux';
 
 const Header = () => {
-  const {user} = useContext(userContext);
+  const { user } = useContext(userContext);
 
   const isOnline = useOnline();
+
+  const cartItem = useSelector((store) => store.cart.items);
+
   return (
     <header className='mb-1 flex items-center justify-between px-2 text-base shadow-lg'>
       <div>
@@ -45,11 +49,6 @@ const Header = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to='/' className='transition-colors hover:text-gray-500'>
-              Cart
-            </NavLink>
-          </li>
-          <li>
             <NavLink
               to='/instamart'
               className='transition-colors hover:text-gray-500'
@@ -57,10 +56,18 @@ const Header = () => {
               Instamart
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              to='/cart'
+              className='transition-colors hover:text-gray-500'
+            >
+              Cart - {cartItem.length}
+            </NavLink>
+          </li>
         </ul>
       </div>
 
-      <div className='border transition-all cursor-pointer rounded-full font-bold p-3 w-12 h-12 flex items-center justify-center hover:bg-gray-200'>
+      <div className='flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border p-3 font-bold transition-all hover:bg-gray-200'>
         <p>{user.name}</p>
       </div>
     </header>

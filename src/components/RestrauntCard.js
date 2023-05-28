@@ -7,7 +7,7 @@ const RestrauntCard = ({
   cloudinaryImageId,
   lastMileTravelString,
 }) => {
-  const {user} = useContext(userContext)
+  const { user } = useContext(userContext);
   return (
     <div className='w-[200px] overflow-hidden rounded-lg bg-gray-50 shadow-lg'>
       <img src={IMG_CDN_URL + cloudinaryImageId} />
@@ -17,7 +17,9 @@ const RestrauntCard = ({
           {cuisines.join(', ')}
         </h5>
         <h5 className='text-sm'>{lastMileTravelString}</h5>
-        <h5 className='text-xs'>{user.name} - {user.email}</h5>
+        <h5 className='text-xs'>
+          {user.name} - {user.email}
+        </h5>
       </div>
     </div>
   );

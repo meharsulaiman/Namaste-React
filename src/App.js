@@ -9,6 +9,10 @@ import Profile from './components/Profile';
 import Shimmer from './components/Shimmer';
 import userContext from './context/userContext';
 
+import { Provider } from 'react-redux';
+import store from './utils/store';
+import Cart from './components/Cart';
+
 // Lazy
 const Instamart = lazy(() => import('./components/Instamart'));
 const About = lazy(() => import('./components/About.js'));
@@ -18,16 +22,18 @@ const App = () => {
   const [user, setUser] = useState({
     name: 'My',
     email: 'my@example.com',
-    password: 'password'
-  })
+    password: 'password',
+  });
   return (
-    <userContext.Provider value={{user, setUser}}>
-      <Header />
-      <div className='h-full'>
-      <Outlet />
-      </div>
-      <Footer />
-    </userContext.Provider>
+    <Provider store={store}>
+      <userContext.Provider value={{ user, setUser }}>
+        <Header />
+        <div className='min-h-[75vh]'>
+          <Outlet />
+        </div>
+        <Footer />
+      </userContext.Provider>
+    </Provider>
   );
 };
 
@@ -58,6 +64,10 @@ export const appRouter = createBrowserRouter([
       {
         path: '/contact',
         element: <Contact />,
+      },
+      {
+        path: '/cart',
+        element: <Cart />,
       },
       {
         path: '/restaurant/:id',

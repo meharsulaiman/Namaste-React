@@ -41,24 +41,27 @@ html {
 }
 
 
-.rest-menu {
+.rest-menu, .cart {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.rest-menu ul {
+.rest-menu ul, .cart ul {
   list-style-type: none;
 }
 
-.rest-menu ul li {
+.rest-menu ul li, .cart ul li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   font-size: 1.2rem;
   padding: 5px 0 5px 5px;
 }
 
-.rest-menu ul li:nth-child(even) {
+.rest-menu ul, .cart ul li:nth-child(even) {
   background-color: #ddddddad;
 }
-.rest-menu ul li:nth-child(odd) {
+.rest-menu ul, .cart ul li:nth-child(odd) {
   background-color: #222222ac;
 }
