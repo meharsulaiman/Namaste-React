@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
-import './Header.css';
+
 import logo from '../../public/logo.png';
 import { NavLink } from 'react-router-dom';
 import useOnline from '../utils/useOnline';
 import userContext from '../context/userContext';
 import { useSelector } from 'react-redux';
+import './Header.css';
 
 const Header = () => {
   const { user } = useContext(userContext);
@@ -17,12 +18,12 @@ const Header = () => {
     <header className='mb-1 flex items-center justify-between px-2 text-base shadow-lg'>
       <div>
         <NavLink to='/'>
-          <img width='70px' alt='Logo' src={logo} />
+          <img data-testid="logo" width='70px' alt='Logo' src={logo} />
         </NavLink>
       </div>
 
       <div>
-        <h4>Status: {isOnline ? '🟢' : '🔴'}</h4>
+        <h4 data-testid='online-status'>Status: {isOnline ? '🟢' : '🔴'}</h4>
       </div>
 
       <div>
@@ -60,6 +61,7 @@ const Header = () => {
             <NavLink
               to='/cart'
               className='transition-colors hover:text-gray-500'
+              data-testid="cart"
             >
               Cart - {cartItem.length}
             </NavLink>
@@ -76,21 +78,4 @@ const Header = () => {
 
 export default Header;
 
-/* 
 
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border: 1px solid black;
-  padding: 0px 10px;
-}
-
-.nav-l {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  list-style: none;
-}
-*/
